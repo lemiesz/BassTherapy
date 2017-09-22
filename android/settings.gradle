@@ -1,0 +1,3 @@
+rootProject.name = 'BassTherapy2'
+
+include ':app'
