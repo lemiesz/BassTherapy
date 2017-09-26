@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import * as firebase from 'firebase';
 
-import CheckInPage from "./app/components/CheckInPage";
+import App from "./app/App";
 
 
 var config = {
@@ -28,4 +28,6 @@ export default class BassTherapy extends Component {
   }
 }
 
-AppRegistry.registerComponent('BassTherapy2', () => BassTherapy);
+
+
+AppRegistry.registerComponent('BassTherapy2', () => App);

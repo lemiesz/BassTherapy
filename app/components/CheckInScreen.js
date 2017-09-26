@@ -10,7 +10,7 @@ const lat_couch = 47.666379;
 const long_couch = -122.356518;
 const maxDistance = 100;
 
-class CheckInPage extends Component {
+class CheckInScreen extends Component {
 
   // Uses haversine formula to give distance between to points in meters
   haversineDistance = (lat1, lon1, lat2, lon2) => {  // generally used geo measurement function
@@ -108,4 +108,4 @@ const styles = StyleSheet.create({
 
 const mapurl = "https://maps.googleapis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&zoom=13&size=600x300&maptype=roadmap&key=AIzaSyArIQ-mCWJFUf7MEaAp9JLBni3KHpwJXKM";
 
-export default CheckInPage;
+export default CheckInScreen;
