@@ -12,6 +12,11 @@ const maxDistance = 100;
 
 class CheckInScreen extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {}
+  }
+
   // Uses haversine formula to give distance between to points in meters
   haversineDistance = (lat1, lon1, lat2, lon2) => {  // generally used geo measurement function
       var R = 6378.137; // Radius of earth in KM
@@ -35,22 +40,11 @@ class CheckInScreen extends Component {
   }
 
   getLocation = () => {
-    var data = Api.get("randomToken").then((data) => {
-      console.log(data.data);
-    }).catch((error) => {
-        console.log(error);
-    });
-
-
     navigator.geolocation.getCurrentPosition(
       (position) => {
         var distance = this.haversineDistance(this.state.lat, this.state.long, position.coords.latitude, position.coords.longitude);
-        alert(distance);
-        if(distance <= 10) {
-          alert("Nice");
-        } else {
-          alert("Fail");
-        }
+        var {navigate} = this.props.navigation;
+        navigate("Reward");
         // this.setState({latitude: position.coords.latitude, longitude: position.coords.longitude})
       },
       (failure) => {
