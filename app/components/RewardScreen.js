@@ -4,19 +4,23 @@ import CardView from 'react-native-cardview';
 import RewardToken from "./RewardToken";
 import * as firebase from 'firebase';
 import Api from "../lib/api";
+import TokenDefinitions from "../utility/TokenDefinitions";
 
 class RewardScreen extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {
+      token: "null"
+    }
   }
 
   componentDidMount() {
-    var data = Api.get("randomToken").then((data) => {
-
-    }).catch((error) => {
-        console.log(error);
+    TokenDefinitions.getToken().then((token) => {
+      console.log(token);
+      this.setState({
+        token: token
+      })
     });
   }
 
@@ -28,8 +32,8 @@ class RewardScreen extends Component {
           cardElevation={4}
           cardMaxElevation={4}
           cornerRadius={4}>
-            <RewardToken tokenIndex={"SLEEPY"} style={styles.text} />
-            <Text style={styles.text}>Hellow Text </Text>
+            <RewardToken tokenUrl={this.state.token} style={styles.text} />
+            <Text style={styles.text}> You Recieved a new Reward </Text>
           </CardView>
       </View>
     )

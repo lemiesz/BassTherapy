@@ -3,28 +3,13 @@ import {View, Image, StyleSheet} from 'react-native';
 
 class RewardToken extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      token: TOKENS.IT_ME
-    }
-  }
-
-  componentDidMount() {
-    this.setState({
-      token: TOKENS.SLEEPY
-    })
-  }
-
   render() {
-    var token = this.state.token;
     return (
       <View>
-        <Image source={token} style={styles.image} />
+        <Image source={{uri: this.props.tokenUrl}} style={styles.image} />
       </View>
     )
   }
-
 }
 
 export default RewardToken;

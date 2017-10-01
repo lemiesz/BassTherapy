@@ -12,7 +12,8 @@
 		"react-native": "0.48.3",
 		"react-native-cardview": "^1.1.0",
 		"react-navigation": "^1.0.0-beta.11",
-		"redux": "^3.7.2"
+		"redux": "^3.7.2",
+		"underscore": "^1.8.3"
 	},
 	"devDependencies": {
 		"babel-jest": "21.0.2",
