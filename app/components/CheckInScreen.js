@@ -17,6 +17,17 @@ class CheckInScreen extends Component {
     this.state = {}
   }
 
+  static navigationOptions = {
+    tabBarLabel: 'Check In',
+    // Note: By default the icon is only shown on iOS. Search the showIcon option below.
+    tabBarIcon: ({ tintColor }) => (
+      <Image
+        source={require('../assets/map_check_in.png')}
+        style={[styles.icon, {tintColor: tintColor}]}
+      />
+    ),
+  };
+
   // Uses haversine formula to give distance between to points in meters
   haversineDistance = (lat1, lon1, lat2, lon2) => {  // generally used geo measurement function
       var R = 6378.137; // Radius of earth in KM
@@ -97,8 +108,14 @@ const styles = StyleSheet.create({
   map: {
     justifyContent: 'center',
     alignSelf: 'center'
-  }
+  },
+  icon: {
+    width: 32,
+    height: 32,
+  },
 })
+
+
 
 const mapurl = "https://maps.googleapis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&zoom=13&size=600x300&maptype=roadmap&key=AIzaSyArIQ-mCWJFUf7MEaAp9JLBni3KHpwJXKM";
 
