@@ -17,7 +17,7 @@ class RewardsList extends Component {
   render() {
     return(
       <View style={styles.container}>
-        <Text style={styles.text}> This is the reward list screen </Text>
+        <Text style={styles.text}> You have no rewards yet, go to Bass Therapy </Text>
       </View>
     )
   }
@@ -35,8 +35,8 @@ const styles = StyleSheet.create({
     alignSelf: "center"
   },
   icon: {
-    width: 32,
-    height: 32
+    width: 26,
+    height: 26
   }
 });
 

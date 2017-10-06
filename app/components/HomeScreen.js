@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
-import {Button, View, TextInput, StyleSheet} from 'react-native';
-import CardView from 'react-native-cardview';
+import {View, TextInput, StyleSheet} from 'react-native';
+import { Card, Button, FormLabel, FormInput } from "react-native-elements";
 
 const BUTTON_TEXT = "Start Here";
 class HomeScreen extends Component {
@@ -24,30 +24,19 @@ class HomeScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <CardView style={styles.card}
-          cardElevation={4}
-          cardMaxElevation={4}
-          cornerRadius={4}>
-          <TextInput
-            placeholder = "username..."
-            style={styles.textInput}
-            onChangeText={(userName) => this.setState({userName})}
-            value={this.state.userName}
-            />
-            <View style={{
-                    borderBottomWidth: 1,
-                    borderBottomColor: 'black',
-                    width: 200,
-                    opacity: .1
-                  }}  />
-          <TextInput
-            placeholder = "password... "
-            style={styles.textInput}
-            onChangeText={(password) => this.setState({password})}
-            value={this.state.password}
-            />
-          <Button title={BUTTON_TEXT} onPress={this.onClickHome}/>
-        </CardView>
+        <Card>
+           <FormLabel>Email</FormLabel>
+           <FormInput placeholder="username..." />
+           <FormLabel>Password</FormLabel>
+           <FormInput secureTextEntry placeholder="Password..." />
+
+           <Button
+             buttonStyle={{ marginTop: 20 }}
+             backgroundColor="#03A9F4"
+             title="SIGN IN"
+             onPress={this.onClickHome}
+           />
+       </Card>
       </View>
     )
   }
@@ -55,11 +44,7 @@ class HomeScreen extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    backgroundColor: 'white',
-    alignItems: 'center'
+    paddingVertical: 20
   },
   card:{
     backgroundColor: "white",

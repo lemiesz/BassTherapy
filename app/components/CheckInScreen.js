@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
-import {View, Text, Button, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet, Image} from 'react-native';
 import CardView from 'react-native-cardview'
+import { Card, Button, FormLabel, FormInput } from "react-native-elements";
 import MapView from './MapView';
 import * as firebase from 'firebase';
 
@@ -66,19 +67,14 @@ class CheckInScreen extends Component {
   render(){
     return(
       <View style={styles.container}>
-        <CardView
-          style={styles.card}
-          cardElevation={4}
-          cardMaxElevation={4}
-          cornerRadius={4}>
+        <Card style={styles.card}>
             <MapView {...mapParams} />
-        </CardView>
-        <CardView style={styles.card}
-                  cardElevation={4}
-                  cardMaxElevation={4}
-                  cornerRadius={4}>
-              <Button title="Check In" onPress={this.getLocation} />
-       </CardView>
+        </Card>
+        <Card style={styles.card}>
+            <Button
+              backgroundColor="#03A9F4"
+              title="Check In" onPress={this.getLocation} />
+       </Card>
       </View>
     )
   }
@@ -110,8 +106,8 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   },
   icon: {
-    width: 32,
-    height: 32,
+    width: 26,
+    height: 26,
   },
 })
 

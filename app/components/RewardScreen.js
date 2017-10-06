@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import CardView from 'react-native-cardview';
+import {Card} from 'react-native-elements'
 import RewardToken from "./RewardToken";
 import * as firebase from 'firebase';
 import Api from "../lib/api";
@@ -21,20 +21,18 @@ class RewardScreen extends Component {
       this.setState({
         token: token
       })
+      firebase.database().ref()
     });
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <CardView
-          style={styles.card}
-          cardElevation={4}
-          cardMaxElevation={4}
-          cornerRadius={4}>
+        <Card
+          style={styles.card}>
             <RewardToken tokenUrl={this.state.token} style={styles.text} />
             <Text style={styles.text}> You Recieved a new Reward </Text>
-          </CardView>
+          </Card>
       </View>
     )
   }
