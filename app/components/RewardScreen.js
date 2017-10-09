@@ -13,7 +13,7 @@ class RewardScreen extends Component {
     this.state = {
       token: "null"
     }
-  }
+}
 
   componentDidMount() {
     TokenDefinitions.getToken().then((token) => {

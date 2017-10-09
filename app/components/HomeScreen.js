@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
-import {View, TextInput, StyleSheet} from 'react-native';
+import {View, StyleSheet, Text} from 'react-native';
 import { Card, Button, FormLabel, FormInput } from "react-native-elements";
+import * as auth from "../lib/auth";
 
 const BUTTON_TEXT = "Start Here";
 class HomeScreen extends Component {
@@ -9,7 +10,8 @@ class HomeScreen extends Component {
     super(props);
     this.state = {
       userName: "",
-      password: ""
+      password: "",
+      error: false
     }
   }
 
@@ -17,24 +19,44 @@ class HomeScreen extends Component {
     this.navigation = this.props.navigation;
   }
 
-  onClickHome = () => {
-     this.navigation.navigate('TabContainer');
+  onClickLogin = (username, password) => {
+     auth.onSignIn(username, password)
+     .then(() => {
+       this.navigation.navigate('TabContainer');
+     })
+     .catch((error) => {
+       // handle error here
+      this.setState({error: true})
+     });
+  }
+
+  onClickSignUp = () => {
+    this.navigation.navigate('SignUp');
   }
 
   render() {
+    var errorRender = this.state.error ? <Text style=  {{color: 'red'}}> Oops please try again </Text> : null;
+
     return (
       <View style={styles.container}>
         <Card>
            <FormLabel>Email</FormLabel>
-           <FormInput placeholder="username..." />
+           <FormInput onChangeText={ (userName) => this.setState({userName})} placeholder="username..." />
            <FormLabel>Password</FormLabel>
-           <FormInput secureTextEntry placeholder="Password..." />
-
+           <FormInput onChangeText={(password) => this.setState({password})} secureTextEntry placeholder="Password..." />
+           {errorRender}
            <Button
              buttonStyle={{ marginTop: 20 }}
              backgroundColor="#03A9F4"
              title="SIGN IN"
-             onPress={this.onClickHome}
+             onPress={this.onClickLogin.bind(this, this.state.userName, this.state.password)}
+           />
+           <Button
+             buttonStyle={{ marginTop: 20 }}
+             backgroundColor="transparent"
+             textStyle={{ color: "#bcbec1" }}
+             title="Sign Up"
+             onPress={this.onClickSignUp}
            />
        </Card>
       </View>

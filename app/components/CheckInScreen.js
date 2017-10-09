@@ -1,9 +1,9 @@
 import React, {Component, PropTypes} from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
-import CardView from 'react-native-cardview'
 import { Card, Button, FormLabel, FormInput } from "react-native-elements";
 import MapView from './MapView';
 import * as firebase from 'firebase';
+import {onSignOut, isSignedIn} from "../lib/auth";
 
 import Api from "../lib/api";
 
@@ -17,7 +17,7 @@ class CheckInScreen extends Component {
     super(props);
     this.state = {}
   }
-
+  
   static navigationOptions = {
     tabBarLabel: 'Check In',
     // Note: By default the icon is only shown on iOS. Search the showIcon option below.
@@ -26,7 +26,7 @@ class CheckInScreen extends Component {
         source={require('../assets/map_check_in.png')}
         style={[styles.icon, {tintColor: tintColor}]}
       />
-    ),
+    )
   };
 
   // Uses haversine formula to give distance between to points in meters
@@ -64,6 +64,13 @@ class CheckInScreen extends Component {
         }
     )
   }
+
+  logOut = () => {
+    onSignOut();
+    var {navigate} = this.props.navigation;
+    navigate("Home");
+  }
+
   render(){
     return(
       <View style={styles.container}>
@@ -74,6 +81,9 @@ class CheckInScreen extends Component {
             <Button
               backgroundColor="#03A9F4"
               title="Check In" onPress={this.getLocation} />
+              <Button
+                backgroundColor="gray"
+                title="LogOut" onPress={this.logOut} />
        </Card>
       </View>
     )

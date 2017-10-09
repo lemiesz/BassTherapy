@@ -5,10 +5,6 @@ import _ from "underscore";
 class TokenDefinitions {
 
   static getToken() {
-    var data = Api.get("randomToken").then((data) => {
-    }).catch((error) => {
-        console.log(error);
-    });
     var tokens = firebase.database().ref('tokens/');
     return tokens.once('value').then((snapshot) => {
       var values = _.values(snapshot.val());
