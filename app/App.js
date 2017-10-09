@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-
+import {Text, View} from "react-native";
 import { StackNavigator } from 'react-navigation';
 import HomeScreen from "./components/HomeScreen";
 import CheckInScreen from "./components/CheckInScreen";
@@ -22,7 +22,7 @@ const firebaseConfig = {
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 
-class App extends Component {
+class App extends React.Component {
 
   constructor(props) {
     super(props);
@@ -32,13 +32,12 @@ class App extends Component {
   }
 
   componentWillMount() {
-      isSignedIn()
-      .then(res => this.setState({signedIn: res}))
-      .catch(err => alert("An error occured"));
+      this.setState({signedIn: isSignedIn()});
   }
 
   render() {
-    return createRootNavigator(this.state.signedIn);
+    const Layout = createRootNavigator(this.state.signedIn);
+    return <Layout />
   }
 
 }

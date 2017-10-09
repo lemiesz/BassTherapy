@@ -17,7 +17,7 @@ class CheckInScreen extends Component {
     super(props);
     this.state = {}
   }
-  
+
   static navigationOptions = {
     tabBarLabel: 'Check In',
     // Note: By default the icon is only shown on iOS. Search the showIcon option below.

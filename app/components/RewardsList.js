@@ -46,10 +46,8 @@ class RewardsList extends Component {
       name: "It_me token"
     }]
 
-    var userName = getCurrentUser().email;
     return(
       <View style={styles.container}>
-        <Text> {userName} </Text>
         <List containerStyle={{marginBottom: 20}}>
               {
                 list.map((l, i) => (

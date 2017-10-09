@@ -22,7 +22,7 @@ class HomeScreen extends Component {
   onClickLogin = (username, password) => {
      auth.onSignIn(username, password)
      .then(() => {
-       this.navigation.navigate('TabContainer');
+       this.navigation.navigate('CheckIn');
      })
      .catch((error) => {
        // handle error here
