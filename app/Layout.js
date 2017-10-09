@@ -5,15 +5,22 @@ import HomeScreen from "./components/HomeScreen";
 import SignUp from "./components/SignUp";
 import CheckInScreen from "./components/CheckInScreen";
 import RewardsList from "./components/RewardsList";
+import RewardScreen from "./components/RewardScreen";
 
 export const SignedOutLayout = StackNavigator({
   SignIn: {screen: HomeScreen},
   SignUp: {screen: SignUp}
 });
 
+
+export const CheckInLayout = StackNavigator({
+  CheckIn: {screen: CheckInScreen},
+  Reward: {screen: RewardScreen}
+})
+
 export const SignedInLayout = TabNavigator({
-    CheckIn: {screen: CheckInScreen},
-    RewardsList: {screen: RewardsList}
+    CheckInLayout: {screen: CheckInLayout},
+    RewardsList: {screen: RewardsList},
 });
 
 
