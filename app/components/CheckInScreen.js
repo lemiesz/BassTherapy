@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, Image} from 'react-native';
 import { Card, Button, FormLabel, FormInput } from "react-native-elements";
 import MapView from './MapView';
 import * as firebase from 'firebase';
-import {onSignOut, isSignedIn} from "../lib/auth";
+import {isSignedIn} from "../lib/auth";
 
 import Api from "../lib/api";
 
@@ -65,12 +65,6 @@ class CheckInScreen extends Component {
     )
   }
 
-  logOut = () => {
-    onSignOut();
-    var {navigate} = this.props.navigation;
-    navigate("Home");
-  }
-
   render(){
     return(
       <View style={styles.container}>
@@ -81,9 +75,6 @@ class CheckInScreen extends Component {
             <Button
               backgroundColor="#03A9F4"
               title="Check In" onPress={this.getLocation} />
-              <Button
-                backgroundColor="gray"
-                title="LogOut" onPress={this.logOut} />
        </Card>
       </View>
     )

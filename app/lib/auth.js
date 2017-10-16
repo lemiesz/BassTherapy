@@ -28,12 +28,13 @@ export const onSignIn = (email, password) => {
 
 export const onSignOut = () => {
   if(!firebase.auth().currentUser) {
-    return;
+    return Promise.resolve();
   }
-  firebase.auth().signOut();
+  return firebase.auth().signOut();
 }
 
-export const onSignUp = (userName, password) => firebase.auth().createUserWithEmailAndPassword(userName, password);
+export const onSignUp = (userName, password) => {
+  return firebase.auth().createUserWithEmailAndPassword(userName, password)};
 
 export const isSignedIn = () => {
   return firebase.auth().currentUser !== null;

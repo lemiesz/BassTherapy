@@ -1,7 +1,8 @@
 import React, {Component, PropTypes} from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet, Text, ActivityIndicator} from 'react-native';
 import { Card, Button, FormLabel, FormInput } from "react-native-elements";
 import * as auth from "../lib/auth";
+import { NavigationActions } from 'react-navigation'
 
 const BUTTON_TEXT = "Start Here";
 class HomeScreen extends Component {
@@ -9,9 +10,10 @@ class HomeScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userName: "lemieszrobert@gmail.com",
-      password: "robert",
-      error: false
+      userName: "",
+      password: "",
+      error: false,
+      loading: false
     }
   }
 
@@ -20,13 +22,16 @@ class HomeScreen extends Component {
   }
 
   onClickLogin = (username, password) => {
+     this.setState({loading: true})
      auth.onSignIn(username, password)
      .then(() => {
-       this.navigation.navigate('CheckIn');
+       this.navigation.navigate("SignedIn");
+       this.setState({loading: false})
+
      })
      .catch((error) => {
        // handle error here
-      this.setState({error: true})
+      this.setState({error: true, loading: false})
      });
   }
 
@@ -36,7 +41,12 @@ class HomeScreen extends Component {
 
   render() {
     var errorRender = this.state.error ? <Text style=  {{color: 'red'}}> Oops please try again </Text> : null;
-
+    var signInButton = !this.state.loading ? <Button
+                                             buttonStyle={{ marginTop: 20 }}
+                                             backgroundColor="#03A9F4"
+                                             title="SIGN IN"
+                                             onPress={this.onClickLogin.bind(this, this.state.userName, this.state.password)}
+                                           /> : <ActivityIndicator animating = {true} />
     return (
       <View style={styles.container}>
         <Card>
@@ -45,12 +55,7 @@ class HomeScreen extends Component {
            <FormLabel>Password</FormLabel>
            <FormInput onChangeText={(password) => this.setState({password})} secureTextEntry placeholder="Password..." />
            {errorRender}
-           <Button
-             buttonStyle={{ marginTop: 20 }}
-             backgroundColor="#03A9F4"
-             title="SIGN IN"
-             onPress={this.onClickLogin.bind(this, this.state.userName, this.state.password)}
-           />
+           {signInButton}
            <Button
              buttonStyle={{ marginTop: 20 }}
              backgroundColor="transparent"

@@ -39,7 +39,7 @@ class SignUp extends Component {
 
       this.setState({loading: true})
       auth.onSignUp(userName, password).then(() => {
-        this.navigation.navigate('TabContainer');
+        this.navigation.navigate('SignedIn');
         this.setState({loading: false})
       }).catch((error) => {
           this.setState({generalNetworkError: true})
