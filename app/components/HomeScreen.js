@@ -10,8 +10,8 @@ class HomeScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userName: "",
-      password: "",
+      userName: "lemieszrobert@gmail.com",
+      password: "robert",
       error: false,
       loading: false
     }

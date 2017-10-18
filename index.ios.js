@@ -4,11 +4,9 @@
  * @flow
  */
 
-import React, { Component } from 'react';
 import {
   AppRegistry,
 } from 'react-native';
-import * as firebase from 'firebase';
 
 import App from "./app/App";
 

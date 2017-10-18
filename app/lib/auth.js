@@ -7,22 +7,26 @@ const USER_KEY = "USER_KEY";
 
 // Returns a promise to be handled by consumer
 export const onSignIn = (email, password) => {
-  return firebase.auth().signInWithEmailAndPassword(email, password).then((data) => {
-    // AsyncStorage.setItem(USER_KEY, "true");
-    // var uid = data.val();
-    // firebase.ref("users")
-    var uid = getCurrentUser().uid;
-    var userRef = firebase.database().ref("test/");
-    return firebase.database().ref("users/").child(uid).transaction((currentUserData) => {
-      if(!currentUserData) {
-        return {
-          tokens: "null",
-          settings: "null"
+  return firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(() => {
+    return firebase.auth().signInWithEmailAndPassword(email, password).then((data) => {
+      // AsyncStorage.setItem(USER_KEY, "true");
+      // var uid = data.val();
+      // firebase.ref("users")
+      var uid = getCurrentUser().uid;
+      var userRef = firebase.database().ref("test/");
+      return firebase.database().ref("users/").child(uid).transaction((currentUserData) => {
+        if(!currentUserData) {
+          return {
+            tokens: "null",
+            settings: "null"
+          }
         }
-      }
-    }).then(() => {
-      return Promise.resolve(data);
+      }).then(() => {
+        return Promise.resolve(data);
+      });
     });
+  }).catch((error) => {
+    console.error(error);
   });
 }
 

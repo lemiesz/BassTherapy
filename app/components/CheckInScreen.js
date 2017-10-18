@@ -47,6 +47,9 @@ class CheckInScreen extends Component {
    var currentCoords = firebase.database().ref('currentcoords/');
    currentCoords.on('value', (snapshot) => {
       var value = snapshot.val();
+      if(!value) {
+        return;
+      }
       this.setState({lat: value.lat, long: value.long});
     });
   }
@@ -75,19 +78,11 @@ class CheckInScreen extends Component {
             <Button
               backgroundColor="#03A9F4"
               title="Check In" onPress={this.getLocation} />
-       </Card>
+        </Card>
       </View>
     )
   }
 }
-
-const mapParams = {
-  "center": "Stage nightclub",
-  "zoom": "13",
-  "height": 300,
-  "width": 300,
-  "apiKey": "AIzaSyArIQ-mCWJFUf7MEaAp9JLBni3KHpwJXKM",
-};
 
 const styles = StyleSheet.create({
   container: {
@@ -111,6 +106,16 @@ const styles = StyleSheet.create({
     height: 26,
   },
 })
+
+const mapParams = {
+  "center": "Stage nightclub",
+  "zoom": "13",
+  "height": 300,
+  "width": 300,
+  "apiKey": "AIzaSyArIQ-mCWJFUf7MEaAp9JLBni3KHpwJXKM",
+  "style": styles.map
+};
+
 
 
 

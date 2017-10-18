@@ -22,7 +22,7 @@ class MapView extends Component {
 
   render() {
       return(
-        <View>
+        <View style={this.props.style}>
             <Image style={{width: this.props.width, height: this.props.height}} source={{uri: this.state.uri}} />
         </View>
     )
